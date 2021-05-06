@@ -51,8 +51,9 @@ class AnimationWidget(ScriptedLoadableModuleWidget):
         self.selectors.append(firstSelector)
 
         tranformNodeName = 'Animation transform node'
-        self.transformNode = slicer.util.getNode(tranformNodeName)
-        if self.transformNode is None:
+        try:
+            self.transformNode = slicer.util.getNode(tranformNodeName)
+        except slicer.util.MRMLNodeNotFoundException:
             self.transformNode = slicer.vtkMRMLTransformNode()
             self.transformNode.SetName(tranformNodeName)
             self.transformNode.SetScene(slicer.mrmlScene)
@@ -244,8 +245,9 @@ class AnimationTest(ScriptedLoadableModuleTest):
             t.Update()
 
         tranformNodeName = 'Animation test transform node'
-        self.transformNode = slicer.util.getNode(tranformNodeName)
-        if self.transformNode is None:
+        try:
+            self.transformNode = slicer.util.getNode(tranformNodeName)
+        except slicer.util.MRMLNodeNotFoundException:
             self.transformNode = slicer.vtkMRMLTransformNode()
             self.transformNode.SetName(tranformNodeName)
             self.transformNode.SetScene(slicer.mrmlScene)
