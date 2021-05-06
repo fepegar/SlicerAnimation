@@ -180,7 +180,7 @@ class AnimationLogic(ScriptedLoadableModuleLogic):
         for t in times:
             interpolator.InterpolateTransform(t, auxTransform)
             vtkMatrix = auxTransform.GetMatrix()
-            print vtkMatrix
+            print(vtkMatrix)
             transformNode.SetAndObserveMatrixTransformToParent(vtkMatrix)
             view.forceRender()
 
